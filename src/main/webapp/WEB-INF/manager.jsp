@@ -13,6 +13,7 @@
     <title>Title</title>
 </head>
 <body>
+<a style="float: right" href="/logout"> <input type="submit" value="Logout"></a>
 <spring:form action="/addCollega" method="post" modelAttribute="manager" enctype="multipart/form-data">
     Name <spring:input path="name"></spring:input><br>
     Surname <spring:input path="surname"></spring:input><br>

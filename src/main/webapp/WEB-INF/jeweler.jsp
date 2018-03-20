@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: DEVELOPER
@@ -12,6 +13,7 @@
     <title>jewelerHome</title>
 </head>
 <body>
+<a style="float: right" href="/logout"> <input type="submit" value="Logout"></a>
 Add Citizen:
 <spring:form action="/addCitizen" method="get" modelAttribute="citizen">
     Name: <spring:input path="name"></spring:input><br>
@@ -22,7 +24,15 @@ Add Citizen:
 </spring:form>
     Add Gold:
     <spring:form action="/addGold" method="post" modelAttribute="gold" enctype="multipart/form-data">
-        Citizen ID <spring:input path="citizen"></spring:input><br>
+        <spring:select path="citizen">
+        <c:forEach items="${allCitizen}" var="citizen">
+
+            Citizen Id: <option> ${citizen.id}</option>
+            <%--<option> Citizen Email:<p>${citizen.email}</p></option>--%>
+
+        </c:forEach><br>
+</spring:select>
+        <%--Citizen ID <spring:input path="citizen"></spring:input><br>--%>
         Type: <spring:select path="goldType">
         <option>GOLD</option>
         <option>WHITE_GOLD</option>

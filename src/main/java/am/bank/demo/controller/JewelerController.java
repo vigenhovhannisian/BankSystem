@@ -36,6 +36,7 @@ public class JewelerController {
     public String jewelerHome(ModelMap map){
         map.addAttribute("gold",new Gold());
         map.addAttribute("citizen",new Citizen());
+        map.addAttribute("allCitizen" ,citizenRepository.findAll());
         return "jeweler";
     }
     @RequestMapping(value = "/addGold", method = RequestMethod.POST)

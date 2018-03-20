@@ -12,6 +12,7 @@
     <title>login</title>
 </head>
 <body>
+
 <form action="<c:url value="/loginPage"/> " method="post" name="loginForm">
     <input type="text" placeholder="email" name="j_email"/>
     <input type="password" placeholder="password" name="j_password"/>

@@ -36,6 +36,10 @@ public class MainController {
             if (principal.getUser().getUserType() == UserType.JEWELER) {
                 return "redirect:/jewelerHome";
 
+            }else {
+                if (principal.getUser().getUserType()==UserType.OPERATOR_CASHIER){
+                    return "redirect:/cashierHome";
+                }
             }
         }
         return "redirect:/";
