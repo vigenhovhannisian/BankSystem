@@ -14,6 +14,7 @@
 </head>
 <body>
 <a style="float: right" href="/logout"> <input type="submit" value="Logout"></a>
+Add Collega
 <spring:form action="/addCollega" method="post" modelAttribute="manager" enctype="multipart/form-data">
     Name <spring:input path="name"></spring:input><br>
     Surname <spring:input path="surname"></spring:input><br>
@@ -36,9 +37,16 @@
     Image <input type="file" id="image" name="image"/><br>
     <input type="submit" value="ADD">
 </spring:form>
+Add Room
 <spring:form action="/addRoom" method="post" modelAttribute="room" enctype="multipart/form-data">
     Name <spring:input path="name"></spring:input><br>
     Image <input type="file" id="image" name="image"/><br>
+    <input type="submit" value="ADD">
+</spring:form>
+Send Message
+<spring:form action="/sendMessage" method="post" modelAttribute="message">
+    <spring:input path="email"></spring:input>
+    <spring:input path="text"></spring:input>
     <input type="submit" value="ADD">
 </spring:form>
 

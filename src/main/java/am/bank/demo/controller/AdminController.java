@@ -1,10 +1,14 @@
 package am.bank.demo.controller;
 
 
+import am.bank.demo.model.Message;
 import am.bank.demo.model.Room;
 import am.bank.demo.model.User;
+
 import am.bank.demo.repository.ManagerRepository;
+import am.bank.demo.repository.MessageRepository;
 import am.bank.demo.repository.RoomRepository;
+import am.bank.demo.util.EmailServiceImpl;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,12 +28,19 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+
 @Controller
 public class AdminController {
+    @Autowired
+    private MessageRepository messageRepository;
+
+    @Autowired
+    private EmailServiceImpl emailService;
+
     @Value("D:\\mvc\\")
     private String imageUploadPath;
     @Autowired
-PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
     @Autowired
     private ManagerRepository managerRepository;
     @Autowired
@@ -38,10 +49,11 @@ PasswordEncoder passwordEncoder;
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap map) {
         map.addAttribute("manager", new User());
-        map.addAttribute("room",new Room());
+        map.addAttribute("room", new Room());
+        map.addAttribute("message",new Message());
         return "manager";
 
-}
+    }
 
     @RequestMapping(value = "/addCollega", method = RequestMethod.POST)
     public String addBrand(@ModelAttribute(name = "manager") User user, @RequestParam(value = "image") MultipartFile file) throws IOException {
@@ -64,6 +76,7 @@ PasswordEncoder passwordEncoder;
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         IOUtils.copy(in, response.getOutputStream());
     }
+
     @RequestMapping(value = "/addRoom", method = RequestMethod.POST)
     public String addRoom(@ModelAttribute(name = "room") Room room, @RequestParam(value = "image") MultipartFile file) throws IOException {
         File dir = new File(imageUploadPath);
@@ -77,5 +90,16 @@ PasswordEncoder passwordEncoder;
         roomRepository.save(room);
         return "redirect:/admin";
     }
+
+    @RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
+    public String register(@ModelAttribute("message") Message message) {
+        emailService.sendSimpleMessage(message.getEmail(), "With Respects ArmenianBank",message.getText());
+        messageRepository.save(message);
+
+
+        return "redirect:/admin";
+
+    }
+
 }
 
