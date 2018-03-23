@@ -6,19 +6,22 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="room")
-@Data
+@Table(name = "payment")
 @Entity
-public class Room {
+public class Payment {
     @Id
     @GeneratedValue
     @Column
     private int id;
+    @ManyToOne
+    private Citizen citizen;
     @Column
-    private String name;
-    @Column(name = "pic_url")
-    private String picture;
+    private String product;
+    @Column(name = "how_much_was_paid")
+    private double howMuchWasPaid;
+    private String timestamp;
 
 }

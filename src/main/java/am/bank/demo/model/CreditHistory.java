@@ -6,19 +6,19 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="room")
-@Data
+@Table(name = "quality")
 @Entity
-public class Room {
+public class CreditHistory {
     @Id
     @GeneratedValue
     @Column
     private int id;
-    @Column
-    private String name;
-    @Column(name = "pic_url")
-    private String picture;
-
+    @Column(name = "quality")
+    @Enumerated(EnumType.STRING)
+    private CreditHistoryType historyType;
+    @ManyToOne
+    private Citizen citizenId;
 }

@@ -36,14 +36,18 @@ public class MainController {
             if (principal.getUser().getUserType() == UserType.JEWELER) {
                 return "redirect:/jewelerHome";
 
-            }else {
-                if (principal.getUser().getUserType()==UserType.OPERATOR_CASHIER){
+            } else {
+                if (principal.getUser().getUserType() == UserType.OPERATOR_CASHIER) {
                     return "redirect:/cashierHome";
+                } else {
+                    if (principal.getUser().getUserType() == UserType.SALES_MANAGER) {
+                        return "redirect:/paymentPoint";
+                    }
                 }
+                return "redirect:/";
             }
         }
-        return "redirect:/";
-    }
+        }
     @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
     public String login() {
         if (user.getUserType().equals(UserType.MANAGER)) {

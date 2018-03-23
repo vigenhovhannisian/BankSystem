@@ -5,6 +5,8 @@ import am.bank.demo.model.AccessMoney;
 import am.bank.demo.model.ExitMoney;
 import am.bank.demo.repository.AccessMoneyRepository;
 import am.bank.demo.repository.ExitMoneyRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class CashierController {
+    private Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     private AccessMoneyRepository accessMoneyRepository;
     @Autowired
@@ -30,6 +34,7 @@ public class CashierController {
 
     @PostMapping(value = "/change")
     public String change(@ModelAttribute("accessMoney") AccessMoney money) {
+
         accessMoneyRepository.save(money);
         return "redirect:/cashierHome";
     }

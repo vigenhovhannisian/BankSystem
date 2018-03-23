@@ -8,10 +8,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
 <head>
     <title>Title</title>
 </head>
+<html>
 <body>
 <a style="float: right" href="/logout"> <input type="submit" value="Logout"></a>
 Add Collega
@@ -50,6 +50,23 @@ Send Message
     <input type="submit" value="ADD">
 </spring:form>
 
+addQuality
+<spring:form action="/addCitizenQuality" method="post" modelAttribute="addQuality">
+    <spring:input path="citizenId"></spring:input>
+    Quality: <spring:select path="historyType">
+    <option>VERY_GOOD</option>
+    <option>GOOD</option>
+    <option>MEDIUM</option>
+    <option>NORMAL</option>
+    <option>BAD</option>
+</spring:select><br>
+    <input type="submit" value="ADD">
+
+</spring:form>
+
+
+
 </body>
+
 </html>
 
