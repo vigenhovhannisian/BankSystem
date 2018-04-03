@@ -13,23 +13,33 @@
     <title>jewelerHome</title>
 </head>
 <body>
+<spring:form action="/user/" method="get" modelAttribute="citizen">
+    <spring:input path="id"></spring:input>
+    <input type="submit">
+</spring:form>
+
 <a style="float: right" href="/logout"> <input type="submit" value="Logout"></a>
 Add Citizen:
 <spring:form action="/addCitizen" method="get" modelAttribute="citizen">
     Name: <spring:input path="name"></spring:input><br>
     Surname: <spring:input path="surname"></spring:input><br>
-    Email:<spring:input path="email"></spring:input><br>
+    Email:<spring:input  path="email"></spring:input><br>
     Phone:<spring:input path="phone"></spring:input><br>
+    Quality: <spring:select path="type">
+    <option>VERY_GOOD</option>
+    <option>GOOD</option>
+    <option>MEDIUM</option>
+    <option>NORMAL</option>
+    <option>BAD</option>
+</spring:select><br>
     <input type="submit" value="ADD">
 </spring:form>
     Add Gold:
     <spring:form action="/addGold" method="post" modelAttribute="gold" enctype="multipart/form-data">
         <spring:select path="citizen">
         <c:forEach items="${allCitizen}" var="citizen">
-
             Citizen Id: <option> ${citizen.id}</option>
             <%--<option> Citizen Email:<p>${citizen.email}</p></option>--%>
-
         </c:forEach><br>
 </spring:select>
         <%--Citizen ID <spring:input path="citizen"></spring:input><br>--%>
@@ -44,5 +54,9 @@ Add Citizen:
         <input type="submit" value="ADD">
     </spring:form>
 
+<c:forEach items="${allCitizen}" var="citizens">
+    <a href="/user/8"> ${citizens.id}</a>
+</c:forEach>
+<span>${user.name}</span>
     </body>
     </html>

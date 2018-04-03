@@ -8,13 +8,11 @@ import am.bank.demo.repository.JewelerRepository;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
@@ -32,13 +30,14 @@ public class JewelerController {
     @Autowired
     private CitizenRepository citizenRepository;
 
-    @RequestMapping(value = "/jewelerHome",method = RequestMethod.GET)
-    public String jewelerHome(ModelMap map){
-        map.addAttribute("gold",new Gold());
-        map.addAttribute("citizen",new Citizen());
-        map.addAttribute("allCitizen" ,citizenRepository.findAll());
+    @RequestMapping(value = "/jewelerHome", method = RequestMethod.GET)
+    public String jewelerHome(ModelMap map) {
+        map.addAttribute("gold", new Gold());
+        map.addAttribute("citizen", new Citizen());
+        map.addAttribute("allCitizen", citizenRepository.findAll());
         return "jeweler";
     }
+
     @RequestMapping(value = "/addGold", method = RequestMethod.POST)
     public String addGold(@ModelAttribute(name = "gold") Gold gold, @RequestParam(value = "image") MultipartFile file) throws IOException {
         File dir = new File(imageUploadPath);
@@ -59,10 +58,17 @@ public class JewelerController {
         response.setContentType(MediaType.IMAGE_JPEG_VALUE);
         IOUtils.copy(in, response.getOutputStream());
     }
-@RequestMapping(value = "addCitizen",method = RequestMethod.GET)
-    public String addCitizen(@ModelAttribute(name = "citizen") Citizen citizen){
+
+    @RequestMapping(value = "addCitizen", method = RequestMethod.GET)
+    public String addCitizen(@ModelAttribute(name = "citizen") Citizen citizen) {
         citizenRepository.save(citizen);
         return "redirect:/jewelerHome";
     }
-
+    
+    @GetMapping("/user/{id}")
+    public String userDetail(@PathVariable int id, ModelMap map) {
+        Citizen one = citizenRepository.findOne(id);
+        map.addAttribute("user", one);
+        return "jeweler";
+    }
 }

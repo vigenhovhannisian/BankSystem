@@ -13,6 +13,8 @@
 </head>
 <html>
 <body>
+
+<><span>${user.name}</span>
 <a style="float: right" href="/logout"> <input type="submit" value="Logout"></a>
 Add Collega
 <spring:form action="/addCollega" method="post" modelAttribute="manager" enctype="multipart/form-data">
@@ -63,6 +65,9 @@ addQuality
     <input type="submit" value="ADD">
 
 </spring:form>
+
+
+
 
 
 

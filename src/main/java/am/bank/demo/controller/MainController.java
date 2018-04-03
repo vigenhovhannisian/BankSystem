@@ -42,12 +42,16 @@ public class MainController {
                 } else {
                     if (principal.getUser().getUserType() == UserType.SALES_MANAGER) {
                         return "redirect:/paymentPoint";
+                    } else {
+                        if (principal.getUser().getUserType() == UserType.FINANCIAL_EXPERT) {
+                            return "redirect:/financialExpertHome";
+                        }
+                        return "redirect:/";
                     }
                 }
-                return "redirect:/";
             }
         }
-        }
+    }
     @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
     public String login() {
         if (user.getUserType().equals(UserType.MANAGER)) {

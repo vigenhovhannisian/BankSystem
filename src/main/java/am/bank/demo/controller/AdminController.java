@@ -20,7 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+
 
 
 @Controller
@@ -53,6 +53,7 @@ public class AdminController {
         map.addAttribute("payment", new Payment());
         map.addAttribute("allCitizen", citizenRepository.findAll());
         map.addAttribute("addQuality", new CreditHistory());
+        map.addAttribute("getHistory",citizenRepository.findAll());
         return "manager";
 
     }
@@ -109,6 +110,10 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-
+    @PostMapping("/getCitizenHistory")
+    public String getHistory ( @ModelAttribute("creditHistory") Citizen citizen) {
+        paymentRepository.getOneByCitizen_Id(citizen.getId());
+        return "jeweler";
+    }
 }
 

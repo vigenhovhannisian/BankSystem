@@ -9,23 +9,16 @@ import javax.persistence.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "citizen")
+@Table(name = "financial_income")
 @Entity
-public class Citizen {
+public class FinancialReport {
     @Id
     @GeneratedValue
     @Column
     private int id;
     @Column
-    private String name;
+    private String needed;
     @Column
-    private String surname;
-    @Column
-    private String email;
-    @Column
-    private String phone;
-    @Column(name = "credit_history")
-    @Enumerated(EnumType.STRING)
-    private CreditHistoryType type;
+    private String bought;
 
 }
