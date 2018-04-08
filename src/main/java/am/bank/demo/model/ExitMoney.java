@@ -21,4 +21,6 @@ public class ExitMoney {
     private MoneyType moneyType;
     @Column(name = "exit_money")
     private double exitMoney;
+    @Column
+    private String percent;
 }

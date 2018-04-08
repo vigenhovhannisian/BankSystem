@@ -28,7 +28,8 @@ public class CashierController {
     public String mainPage(ModelMap map) {
         map.addAttribute("accessMoney", new AccessMoney());
         map.addAttribute("exitMoney", new ExitMoney());
-
+        map.addAttribute("exitMoneys",exitMoneyRepository.findAll());
+        map.addAttribute("accessMoneys",accessMoneyRepository.findAll());
         return "cashier";
     }
 

@@ -20,6 +20,7 @@ public class PaymentController {
     public String addPayment(ModelMap map) {
         map.addAttribute("payment", new Payment());
         map.addAttribute("allCitizen",citizenRepository.findAll());
+        map.addAttribute("allPayments",paymentRepository.findAll());
 
         return "payment";
     }

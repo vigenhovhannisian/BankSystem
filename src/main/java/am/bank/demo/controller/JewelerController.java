@@ -23,6 +23,8 @@ import java.io.InputStream;
 
 @Controller
 public class JewelerController {
+
+
     @Value("D:\\mvc\\")
     private String imageUploadPath;
     @Autowired
@@ -38,6 +40,20 @@ public class JewelerController {
         return "jeweler";
     }
 
+    @RequestMapping(value = "/jewelerViewGolds", method = RequestMethod.GET)
+    public String viewAllGolds(ModelMap map) {
+        map.addAttribute("allGolds", jewelerRepository.findAll());
+        map.addAttribute("allCitizens", citizenRepository.findAll());
+        return "viewAllGolds";
+    }
+    @RequestMapping(value = "/addJewelerGold", method = RequestMethod.GET)
+    public String addGoldJeweler(ModelMap map) {
+        map.addAttribute("addGold", new Gold());
+        map.addAttribute("citizen", new Citizen());
+        map.addAttribute("allCitizens",citizenRepository.findAll());
+        return "addGoldJeweler";
+
+}
     @RequestMapping(value = "/addGold", method = RequestMethod.POST)
     public String addGold(@ModelAttribute(name = "gold") Gold gold, @RequestParam(value = "image") MultipartFile file) throws IOException {
         File dir = new File(imageUploadPath);
@@ -49,7 +65,7 @@ public class JewelerController {
         file.transferTo(picture);
         gold.setPicture(picName);
         jewelerRepository.save(gold);
-        return "redirect:/jewelerHome";
+        return "redirect:/addJewelerGold";
     }
 
     @RequestMapping(value = "/gold/image", method = RequestMethod.GET)
