@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
-
     private User user;
     @Autowired
     private ManagerRepository managerRepository;
@@ -54,8 +53,8 @@ public class MainController {
     }
     @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
     public String login() {
-        if (user.getUserType().equals(UserType.MANAGER)) {
-            return "login";
+        if (user==null) {
+            return "loginError";
 
             }
 

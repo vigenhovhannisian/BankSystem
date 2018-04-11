@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Vigen
@@ -10,38 +11,36 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="../cssFinanace/css.css">
 
 
 </head>
 <body>
-<spring:form action="addIncome" method="post" modelAttribute="financial">
-    <table border="1">
+<a style="float: right" href="/logout"> <input type="submit" value="Logout"></a>
 
-        <tr>
-            <th>
-                Needed:
-            </th>
-            <th>
-                Bought:
-            </th>
-        </tr>
-        <tr>
-        <td>
-                <spring:input path="needed"></spring:input>
-        </td>
-           <td>
-                <spring:input path="bought"></spring:input>
-           </td>
-        </tr>
-        <tr>
-            <td>
-                <th>
-            <input type="submit" value="ADD">
-        </th>
-            </td>
-        </tr>
+<table>
+    <thead>
+    <tr>
 
-    </table>
-</spring:form>
+        <th>needed</th>
+        <th>bought</th>
+        <th>Add</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+
+        <spring:form action="addIncome" method="post" modelAttribute="financial">
+
+        <td><spring:input path="needed"></spring:input></td>
+        <td> <spring:input path="bought"></spring:input></td>
+        <td><input type="submit" value="ADD"></td>
+        </spring:form>
+        <td>Jockey</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

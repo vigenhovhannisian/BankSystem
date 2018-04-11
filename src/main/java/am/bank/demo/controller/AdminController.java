@@ -47,7 +47,7 @@ public class AdminController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String adminPage(ModelMap map) {
-        map.addAttribute("manager", new User());
+        map.addAttribute("managerr", new User());
         map.addAttribute("room", new Room());
         map.addAttribute("message", new Message());
         map.addAttribute("payment", new Payment());

@@ -17,7 +17,7 @@
 <><span>${user.name}</span>
 <a style="float: right" href="/logout"> <input type="submit" value="Logout"></a>
 Add Collega
-<spring:form action="/addCollega" method="post" modelAttribute="manager" enctype="multipart/form-data">
+<spring:form action="/addCollega" method="post" modelAttribute="managerr" enctype="multipart/form-data">
     Name <spring:input path="name"></spring:input><br>
     Surname <spring:input path="surname"></spring:input><br>
     Age <spring:input path="age"></spring:input><br>

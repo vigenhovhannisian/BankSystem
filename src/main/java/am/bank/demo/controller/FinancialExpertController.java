@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class FinancialExpertController {
-@Autowired
+    @Autowired
     private FinancialExpertRepository financialExpertRepository;
 
     @RequestMapping(value = "/financialExpertHome", method = RequestMethod.GET)
@@ -25,7 +25,7 @@ public class FinancialExpertController {
 
     @PostMapping("/addIncome")
     public String addQuality(@ModelAttribute("financialReport") FinancialReport financialReport) {
-        financialExpertRepository.save(financialReport);
-        return "redirect:/financialExpertHome";
+            financialExpertRepository.save(financialReport);
+            return "redirect:/financialExpertHome";
     }
 }
